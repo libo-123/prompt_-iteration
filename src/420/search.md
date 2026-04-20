@@ -26,3 +26,76 @@ Shell 约 975ms
 WebFetch 约 4.8s
 WebSearch 约 9.0s
 结论就是：慢的不是本地读写，而是联网检索/抓取。
+
+
+
+# 修复建议
+1、补齐 hook 事件
+至少新增：
+sessionStart
+sessionEnd
+stop
+subagentStart
+subagentStop
+afterShellExecution
+afterMCPExecution
+afterFileEdit
+preCompact
+
+sessionStart/sessionEnd：会话级边界
+stop：最终完成态、错误态、是否中断
+subagentStart/subagentStop：子代理是否拖慢、是否有收益
+afterShellExecution：拿到完整 shell 输出，比通用 postToolUse 更适合分析 shell 结果
+afterMCPExecution：MCP 是现在 skill 很重要的一类能力，必须单独看
+afterFileEdit：知道 skill 实际改了什么
+preCompact：知道是不是上下文压缩影响了 skill
+
+实现对应功能
+
+2. 采用“双层日志”
+不是只写一份扁平 jsonl，而是：
+
+events.jsonl：原始事件流
+runs.jsonl：每次 skill_run 的摘要
+runs.jsonl 每次结束时生成一条汇总，比如：
+
+skill_run_id
+skill
+conversation_id
+start_ts
+end_ts
+duration_ms
+status
+step_count
+tool_count
+tool_breakdown
+error_count
+subagent_count
+shell_count
+mcp_count
+file_edit_count
+modified_files
+compaction_count
+final_stop_status
+
+3. 给 skill trace 增加标准字段
+你现在只有：
+
+skill
+step
+status
+建议以后 [SKILL_TRACE] 至少带：
+
+skill
+run_id 或可推导 run key
+step
+status
+phase_index
+summary
+reason
+expected_output
+这样不仅能看“做了没”，还能看“为什么做”。
+
+
+`sessionStart` / `sessionEnd` - 会话生命周期管理
+

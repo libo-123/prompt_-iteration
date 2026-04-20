@@ -6,6 +6,11 @@
         "command": ".cursor/hooks/format.sh"
       }
     ],
+    "preToolUse": [
+      {
+        "command": "node .cursor/hooks/skill_trace_logger.js preToolUse"
+      }
+    ],
     "afterAgentResponse": [
       {
         "command": "node .cursor/hooks/skill_trace_logger.js afterAgentResponse"
@@ -19,6 +24,11 @@
     "postToolUseFailure": [
       {
         "command": "node .cursor/hooks/skill_trace_logger.js postToolUseFailure"
+      }
+    ],
+    "stop": [
+      {
+        "command": "node .cursor/hooks/skill_trace_logger.js stop"
       }
     ]
   }

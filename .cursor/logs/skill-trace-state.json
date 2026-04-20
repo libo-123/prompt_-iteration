@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "sessions": {
+    "52c6128c-63a1-4a61-a522-c36ba5e71320": {
+      "session_id": "52c6128c-63a1-4a61-a522-c36ba5e71320",
+      "conversation_id": "52c6128c-63a1-4a61-a522-c36ba5e71320",
+      "cursor_session_id": "52c6128c-63a1-4a61-a522-c36ba5e71320",
+      "started_at": "2026-04-20 12:00:47:819",
+      "started_at_ms": 1776686447819,
+      "updated_at": "2026-04-20 12:00:47:897",
+      "updated_at_ms": 1776686447897,
+      "next_run_seq": 2,
+      "active_runs": {}
+    },
+    "893d097c-0875-424e-9318-c2e20f644c2d": {
+      "session_id": "893d097c-0875-424e-9318-c2e20f644c2d",
+      "conversation_id": "893d097c-0875-424e-9318-c2e20f644c2d",
+      "cursor_session_id": "893d097c-0875-424e-9318-c2e20f644c2d",
+      "started_at": "2026-04-20 12:02:17:822",
+      "started_at_ms": 1776686537822,
+      "updated_at": "2026-04-20 12:09:30:663",
+      "updated_at_ms": 1776686970663,
+      "next_run_seq": 2,
+      "active_runs": {}
+    }
+  }
+}

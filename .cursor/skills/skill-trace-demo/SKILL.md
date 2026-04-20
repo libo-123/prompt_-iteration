@@ -1,13 +1,13 @@
 ---
 name: skill-trace-demo
-description: 演示一个包含 6 个固定步骤并输出, 用户提到 「demo skill」 时使用。
+description: 演示一个包含 6 个固定步骤并输出, 用户提到「demo skill」或「demo skills」时使用。
 ---
 
 # Skill Trace Demo
 
 ## 用途
 
-测试skill
+测试 skill，兼容 `demo skill` 与 `demo skills` 两种触发说法。
 
 ## 固定步骤
 
