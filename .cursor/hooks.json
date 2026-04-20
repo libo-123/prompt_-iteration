@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/format.sh"
+      }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "node .cursor/hooks/skill_trace_logger.js afterAgentResponse"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "node .cursor/hooks/skill_trace_logger.js postToolUse"
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": "node .cursor/hooks/skill_trace_logger.js postToolUseFailure"
+      }
+    ]
+  }
+}
