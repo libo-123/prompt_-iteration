@@ -97,7 +97,7 @@
 
 | 字段 | 含义 |
 | --- | --- |
-| `ts` | UTC 时间字符串，格式为 `YYYY-MM-DD HH:mm:ss:SSS` |
+| `ts` | 本地时间字符串，格式为 `YYYY-MM-DD HH:mm:ss:SSS` |
 | `ts_ms` | 毫秒时间戳 |
 | `hook_event` | 触发来源，这类通常是 `afterAgentResponse` |
 | `session_id` | 归一化后的会话 ID，优先取 `conversation_id`，其次 `session_id`，再其次 `request_id` |
@@ -338,7 +338,7 @@
 
 | 函数 | 作用 |
 | --- | --- |
-| `utcNow()` | 生成 UTC 字符串时间 |
+| `formatLocalTime(now)` | 生成本地时区字符串时间 |
 | `createTimestamp()` | 同时生成 `ts` 和 `ts_ms` |
 | `sleep(ms)` | 锁竞争时短暂等待 |
 | `readStdin()` | 读取 Hook 传入的 stdin 文本 |

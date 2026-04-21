@@ -19,13 +19,6 @@
 | 业务开发 | React / Next.js 性能与写法 | `skills/vercel-react-best-practices/` |
 | 业务开发 | 语雀 OpenAPI 读写与目录 | `skills/yuque/` |
 | 业务开发 | 页面状态抽成 Zustand 模块化 store | `skills/zustand-generator/` |
-| 人物/关系 | 同事蒸馏为 AI Skill | `skills/colleague-skill/` |
-| 人物/关系 | 暗恋对象蒸馏为 AI Skill | `skills/crush-skills/` |
-| 人物/关系 | 前任蒸馏为 AI Skill | `skills/ex-skill/` |
-| 人物/关系 | 恋爱双方匹配分析 | `skills/love-skill/` |
-| 视角/方法论 | 峰哥视角的思维框架与表达方式 | `skills/fengge-skill/` |
-| 视角/方法论 | 户晨风视角的消费与分层分析 | `skills/hu-chenfeng-skill/` |
-| 视角/方法论 | 张雪峰的思维框架与表达方式 | `skills/zhangxuefeng-skill/` |
 
 ## Commands
 
@@ -49,14 +42,13 @@
 | 类型 | 说明 | 目录 |
 | --- | --- | --- |
 | 规则 | 项目级规则 | `rules/` |
-| 规则 | Skill 触发日志规则 | `rules/skill-triggered-logging.mdc` |
 | Agent | 子 Agent 定义 | `agents/` |
 | Agent | 改完业务组件后做规范检查 | `agents/after-component.md` |
 | Hook 配置 | Cursor Hook 配置入口 | `hooks.json` |
 | Hook | Git Hooks 脚本 | `hooks/` |
 | Hook | 格式化脚本 | `hooks/format.sh` |
 | Hook | Skill Trace 日志采集脚本（Node） | `hooks/skill_trace_logger.js` |
-| Hook | Skill Trace 日志采集脚本（Python） | `hooks/skill_trace_logger.py` |
-| 日志 | Skill Trace 运行日志 | `logs/skill-trace.jsonl` |
+| 配置 | Cursor 工作区设置 | `settings.json` |
+| 文档 | Skill Trace 观察器说明 | `skill-trace-observer.md` |
 
 

@@ -27,21 +27,22 @@ const FILE_EDIT_TOOL_NAMES = new Set([
   "TabWrite",
 ]);
 
-function utcNow() {
-  const now = new Date();
+function formatLocalTime(now) {
   const pad = (value, width = 2) => String(value).padStart(width, "0");
 
-  return `${now.getUTCFullYear()}-${pad(now.getUTCMonth() + 1)}-${pad(
-    now.getUTCDate(),
-  )} ${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(
-    now.getUTCSeconds(),
-  )}:${pad(now.getUTCMilliseconds(), 3)}`;
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+    now.getDate(),
+  )} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
+    now.getSeconds(),
+  )}:${pad(now.getMilliseconds(), 3)}`;
 }
 
 function createTimestamp() {
+  const now = new Date();
+
   return {
-    ts: utcNow(),
-    ts_ms: Date.now(),
+    ts: formatLocalTime(now),
+    ts_ms: now.getTime(),
   };
 }
 
