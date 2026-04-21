@@ -1,1 +1,72 @@
-{"ts":"2026-04-21 03:49:18:763","ts_ms":1776743358763,"record_type":"skill_run","skill_run_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca:0001:yuque","session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","conversation_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","cursor_session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","skill":"yuque","status":"completed","run_source":"tool_only","start_ts":"2026-04-21 03:49:02:406","end_ts":"2026-04-21 03:49:18:762","duration_ms":16356,"completion_reason":"agent_stop","has_trace":false,"events_count":12,"step_count":0,"step_events_count":0,"step_statuses":{},"steps_started":[],"completed_steps":[],"tool_events_by_step":{"_unscoped":12},"pre_tool_count":6,"tool_count":6,"success_tool_count":6,"failed_tool_count":0,"tool_breakdown":{"MCP:yuque_get_user":1,"MCP:yuque_list_notes":1,"Read":4},"pre_tool_breakdown":{"MCP:yuque_get_user":1,"MCP:yuque_list_notes":1,"Read":4},"pre_tool_breakdown_by_step":{"_unscoped":{"MCP:yuque_get_user":1,"MCP:yuque_list_notes":1,"Read":4}},"tool_breakdown_by_step":{"_unscoped":{"MCP:yuque_get_user":1,"MCP:yuque_list_notes":1,"Read":4}},"success_tool_count_by_step":{"_unscoped":6},"failed_tool_count_by_step":{},"modified_files_by_step":{},"step_windows":{},"step_durations":{},"step_anomaly_count":0,"step_anomalies":[],"error_count":0,"last_error":null,"failure_breakdown":{},"mcp_count":2,"shell_count":0,"file_edit_count":0,"modified_files":[],"model":"gpt-5.4","models_used":["gpt-5.4"],"first_hook_event":"preToolUse","last_hook_event":"postToolUse"}
+{
+  "ts": "2026-04-21 03:49:18:763",
+  "ts_ms": 1776743358763,
+  "record_type": "skill_run",
+  "skill_run_id": "976883cf-bd4c-4f50-b633-2c7aa999a4ca:0001:yuque",
+  "session_id": "976883cf-bd4c-4f50-b633-2c7aa999a4ca",
+  "conversation_id": "976883cf-bd4c-4f50-b633-2c7aa999a4ca",
+  "cursor_session_id": "976883cf-bd4c-4f50-b633-2c7aa999a4ca",
+  "skill": "yuque",
+  "status": "completed",
+  "run_source": "tool_only",
+  "start_ts": "2026-04-21 03:49:02:406",
+  "end_ts": "2026-04-21 03:49:18:762",
+  "duration_ms": 16356,
+  "completion_reason": "agent_stop",
+  "has_trace": false,
+  "events_count": 12,
+  "step_count": 0,
+  "step_events_count": 0,
+  "step_statuses": {},
+  "steps_started": [],
+  "completed_steps": [],
+  "tool_events_by_step": { "_unscoped": 12 },
+  "pre_tool_count": 6,
+  "tool_count": 6,
+  "success_tool_count": 6,
+  "failed_tool_count": 0,
+  "tool_breakdown": {
+    "MCP:yuque_get_user": 1,
+    "MCP:yuque_list_notes": 1,
+    "Read": 4
+  },
+  "pre_tool_breakdown": {
+    "MCP:yuque_get_user": 1,
+    "MCP:yuque_list_notes": 1,
+    "Read": 4
+  },
+  "pre_tool_breakdown_by_step": {
+    "_unscoped": {
+      "MCP:yuque_get_user": 1,
+      "MCP:yuque_list_notes": 1,
+      "Read": 4
+    }
+  },
+  "tool_breakdown_by_step": {
+    "_unscoped": {
+      "MCP:yuque_get_user": 1,
+      "MCP:yuque_list_notes": 1,
+      "Read": 4
+    }
+  },
+  "success_tool_count_by_step": { "_unscoped": 6 },
+  "failed_tool_count_by_step": {},
+  "modified_files_by_step": {},
+  "step_windows": {},
+  "step_durations": {},
+  "step_anomaly_count": 0,
+  "step_anomalies": [],
+  "error_count": 0,
+  "last_error": null,
+  "failure_breakdown": {},
+  "mcp_count": 2,
+  "shell_count": 0,
+  "file_edit_count": 0,
+  "modified_files": [],
+  "model": "gpt-5.4",
+  "models_used": ["gpt-5.4"],
+  "first_hook_event": "preToolUse",
+  "last_hook_event": "postToolUse"
+}
+{"ts":"2026-04-21 03:53:53:376","ts_ms":1776743633376,"record_type":"skill_run","skill_run_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca:0002:yuque","session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","conversation_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","cursor_session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","skill":"yuque","status":"completed","run_source":"tool_only","start_ts":"2026-04-21 03:52:58:863","end_ts":"2026-04-21 03:53:53:372","duration_ms":54509,"completion_reason":"skill_switched","has_trace":false,"events_count":1,"step_count":0,"step_events_count":0,"step_statuses":{},"steps_started":[],"completed_steps":[],"tool_events_by_step":{"_unscoped":1},"pre_tool_count":1,"tool_count":0,"success_tool_count":0,"failed_tool_count":0,"tool_breakdown":{},"pre_tool_breakdown":{"Read":1},"pre_tool_breakdown_by_step":{"_unscoped":{"Read":1}},"tool_breakdown_by_step":{},"success_tool_count_by_step":{},"failed_tool_count_by_step":{},"modified_files_by_step":{},"step_windows":{},"step_durations":{},"step_anomaly_count":0,"step_anomalies":[],"error_count":0,"last_error":null,"failure_breakdown":{},"mcp_count":0,"shell_count":0,"file_edit_count":0,"modified_files":[],"model":"gpt-5.4","models_used":["gpt-5.4"],"first_hook_event":"preToolUse","last_hook_event":"preToolUse"}
+{"ts":"2026-04-21 03:53:53:378","ts_ms":1776743633378,"record_type":"skill_run","skill_run_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca:0003:skill-trace-demo","session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","conversation_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","cursor_session_id":"976883cf-bd4c-4f50-b633-2c7aa999a4ca","skill":"skill-trace-demo","status":"completed","run_source":"trace","start_ts":"2026-04-21 03:53:53:372","end_ts":"2026-04-21 03:53:53:372","duration_ms":0,"completion_reason":"deliver_done","has_trace":true,"events_count":6,"step_count":3,"step_events_count":6,"step_statuses":{"deliver":"done","execute":"done","verify":"done"},"steps_started":["execute","verify","deliver"],"completed_steps":["execute","verify","deliver"],"tool_events_by_step":{},"pre_tool_count":0,"tool_count":0,"success_tool_count":0,"failed_tool_count":0,"tool_breakdown":{},"pre_tool_breakdown":{},"pre_tool_breakdown_by_step":{},"tool_breakdown_by_step":{},"success_tool_count_by_step":{},"failed_tool_count_by_step":{},"modified_files_by_step":{},"step_windows":{"deliver":[{"seq":1,"start_ts":"2026-04-21 03:53:53:372","start_ts_ms":1776743633372,"end_ts":"2026-04-21 03:53:53:372","end_ts_ms":1776743633372,"end_reason":"step_done"}],"execute":[{"seq":1,"start_ts":"2026-04-21 03:53:53:372","start_ts_ms":1776743633372,"end_ts":"2026-04-21 03:53:53:372","end_ts_ms":1776743633372,"end_reason":"step_done"}],"verify":[{"seq":1,"start_ts":"2026-04-21 03:53:53:372","start_ts_ms":1776743633372,"end_ts":"2026-04-21 03:53:53:372","end_ts_ms":1776743633372,"end_reason":"step_done"}]},"step_durations":{"deliver":0,"execute":0,"verify":0},"step_anomaly_count":0,"step_anomalies":[],"error_count":0,"last_error":null,"failure_breakdown":{},"mcp_count":0,"shell_count":0,"file_edit_count":0,"modified_files":[],"model":"gpt-5.4","models_used":["gpt-5.4"],"first_hook_event":"afterAgentResponse","last_hook_event":"afterAgentResponse"}

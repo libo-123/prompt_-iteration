@@ -7,9 +7,9 @@
       "cursor_session_id": "976883cf-bd4c-4f50-b633-2c7aa999a4ca",
       "started_at": "2026-04-21 03:48:56:360",
       "started_at_ms": 1776743336360,
-      "updated_at": "2026-04-21 03:49:18:762",
-      "updated_at_ms": 1776743358762,
-      "next_run_seq": 2,
+      "updated_at": "2026-04-21 03:53:53:474",
+      "updated_at_ms": 1776743633474,
+      "next_run_seq": 4,
       "active_runs": {}
     }
   }
