@@ -17,6 +17,7 @@ const STATE_FILE =
   path.join(LOG_DIR, "skill-trace-state.json");
 const LOCK_DIR =
   process.env.SKILL_TRACE_LOCK_DIR || path.join(LOG_DIR, "skill-trace.lock");
+const UNSCOPED_STEP = "_unscoped";
 const FILE_EDIT_TOOL_NAMES = new Set([
   "Write",
   "Edit",
@@ -161,6 +162,33 @@ function incrementCounter(counter, key) {
   counter[normalizedKey] = (counter[normalizedKey] || 0) + 1;
 }
 
+function incrementCounterByGroup(counterMap, groupKey, key) {
+  const normalizedGroupKey = normalizeScalar(groupKey) || "unknown";
+  if (
+    !counterMap[normalizedGroupKey] ||
+    typeof counterMap[normalizedGroupKey] !== "object" ||
+    Array.isArray(counterMap[normalizedGroupKey])
+  ) {
+    counterMap[normalizedGroupKey] = {};
+  }
+
+  incrementCounter(counterMap[normalizedGroupKey], key);
+}
+
+function incrementValueByGroup(counterMap, groupKey, amount = 1) {
+  const normalizedGroupKey = normalizeScalar(groupKey) || "unknown";
+  counterMap[normalizedGroupKey] = (counterMap[normalizedGroupKey] || 0) + amount;
+}
+
+function addUniqueManyByGroup(listMap, groupKey, values) {
+  const normalizedGroupKey = normalizeScalar(groupKey) || "unknown";
+  if (!Array.isArray(listMap[normalizedGroupKey])) {
+    listMap[normalizedGroupKey] = [];
+  }
+
+  addUniqueMany(listMap[normalizedGroupKey], values);
+}
+
 function sortObjectByKey(value) {
   return Object.fromEntries(
     Object.entries(value || {}).sort(([left], [right]) =>
@@ -169,9 +197,32 @@ function sortObjectByKey(value) {
   );
 }
 
+function sortNestedObjectByKey(value) {
+  return Object.fromEntries(
+    Object.entries(value || {})
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, nestedValue]) => [
+        key,
+        Array.isArray(nestedValue)
+          ? [...nestedValue].sort((left, right) => {
+              const leftSeq =
+                left && typeof left === "object" && typeof left.seq === "number"
+                  ? left.seq
+                  : 0;
+              const rightSeq =
+                right && typeof right === "object" && typeof right.seq === "number"
+                  ? right.seq
+                  : 0;
+              return leftSeq - rightSeq;
+            })
+          : sortObjectByKey(nestedValue),
+      ]),
+  );
+}
+
 function defaultState() {
   return {
-    version: 2,
+    version: 3,
     sessions: {},
   };
 }
@@ -191,7 +242,7 @@ function loadState() {
   }
 
   return {
-    version: 2,
+    version: 3,
     sessions:
       state.sessions && typeof state.sessions === "object" ? state.sessions : {},
   };
@@ -328,6 +379,18 @@ function extractToolInput(payload) {
 
 function extractWorkingDirectory(payload) {
   return normalizeScalar(deepFind(payload, ["cwd", "working_directory", "workingDirectory"]));
+}
+
+function extractModel(payload) {
+  return normalizeScalar(
+    deepFind(payload, [
+      "model",
+      "model_name",
+      "modelName",
+      "assistant_model",
+      "assistantModel",
+    ]),
+  );
 }
 
 function extractModifiedFiles(toolName, toolInput) {
@@ -490,6 +553,7 @@ function buildBaseRecord(eventName, payload) {
     conversation_id: sessionContext.conversation_id,
     cursor_session_id: sessionContext.cursor_session_id,
     request_id: sessionContext.request_id,
+    model: extractModel(payload),
   };
 }
 
@@ -537,6 +601,8 @@ function buildToolRecord(eventName, payload) {
     tool_stage: eventName === "preToolUse" ? "before" : "after",
     skill: skillContext.skill,
     skill_source: skillContext.source,
+    step: null,
+    step_source: null,
     success:
       eventName === "postToolUse"
         ? true
@@ -627,9 +693,96 @@ function getSessionState(state, record) {
   return session;
 }
 
+function normalizeRunState(run) {
+  if (!run || typeof run !== "object") {
+    return run;
+  }
+
+  if (!run.step_statuses || typeof run.step_statuses !== "object") {
+    run.step_statuses = {};
+  }
+  if (!Array.isArray(run.steps_started)) {
+    run.steps_started = [];
+  }
+  if (!Array.isArray(run.completed_steps)) {
+    run.completed_steps = [];
+  }
+  if (!run.tool_breakdown || typeof run.tool_breakdown !== "object") {
+    run.tool_breakdown = {};
+  }
+  if (!run.pre_tool_breakdown || typeof run.pre_tool_breakdown !== "object") {
+    run.pre_tool_breakdown = {};
+  }
+  if (!run.failure_breakdown || typeof run.failure_breakdown !== "object") {
+    run.failure_breakdown = {};
+  }
+  if (!Array.isArray(run.modified_files)) {
+    run.modified_files = [];
+  }
+  if (!Array.isArray(run.models_used)) {
+    run.models_used = [];
+  }
+  if (!run.tool_events_by_step || typeof run.tool_events_by_step !== "object") {
+    run.tool_events_by_step = {};
+  }
+  if (
+    !run.pre_tool_breakdown_by_step ||
+    typeof run.pre_tool_breakdown_by_step !== "object"
+  ) {
+    run.pre_tool_breakdown_by_step = {};
+  }
+  if (
+    !run.tool_breakdown_by_step ||
+    typeof run.tool_breakdown_by_step !== "object"
+  ) {
+    run.tool_breakdown_by_step = {};
+  }
+  if (
+    !run.success_tool_count_by_step ||
+    typeof run.success_tool_count_by_step !== "object"
+  ) {
+    run.success_tool_count_by_step = {};
+  }
+  if (
+    !run.failed_tool_count_by_step ||
+    typeof run.failed_tool_count_by_step !== "object"
+  ) {
+    run.failed_tool_count_by_step = {};
+  }
+  if (
+    !run.modified_files_by_step ||
+    typeof run.modified_files_by_step !== "object"
+  ) {
+    run.modified_files_by_step = {};
+  }
+  if (!run.step_windows || typeof run.step_windows !== "object") {
+    run.step_windows = {};
+  }
+  if (!run.step_durations || typeof run.step_durations !== "object") {
+    run.step_durations = {};
+  }
+  if (!Array.isArray(run.step_anomalies)) {
+    run.step_anomalies = [];
+  }
+  if (typeof run.step_anomaly_count !== "number") {
+    run.step_anomaly_count = run.step_anomalies.length;
+  }
+  if (!("active_step" in run)) {
+    run.active_step = null;
+  }
+  if (!("active_step_started_at" in run)) {
+    run.active_step_started_at = null;
+  }
+  if (!("active_step_started_at_ms" in run)) {
+    run.active_step_started_at_ms = null;
+  }
+
+  return run;
+}
+
 function createRun(session, record) {
   const runSequence = session.next_run_seq++;
-  return {
+  return normalizeRunState({
     skill_run_id: `${record.session_id}:${String(runSequence).padStart(4, "0")}:${record.skill}`,
     session_id: record.session_id,
     conversation_id: record.conversation_id ?? null,
@@ -648,12 +801,25 @@ function createRun(session, record) {
     step_statuses: {},
     steps_started: [],
     completed_steps: [],
+    active_step: null,
+    active_step_started_at: null,
+    active_step_started_at_ms: null,
     pre_tool_count: 0,
     tool_count: 0,
     success_tool_count: 0,
     failed_tool_count: 0,
     tool_breakdown: {},
     pre_tool_breakdown: {},
+    tool_events_by_step: {},
+    pre_tool_breakdown_by_step: {},
+    tool_breakdown_by_step: {},
+    success_tool_count_by_step: {},
+    failed_tool_count_by_step: {},
+    modified_files_by_step: {},
+    step_windows: {},
+    step_durations: {},
+    step_anomaly_count: 0,
+    step_anomalies: [],
     error_count: 0,
     last_error: null,
     failure_breakdown: {},
@@ -661,7 +827,86 @@ function createRun(session, record) {
     shell_count: 0,
     file_edit_count: 0,
     modified_files: [],
+    model: record.model ?? null,
+    models_used: record.model ? [record.model] : [],
+  });
+}
+
+function recordStepAnomaly(run, type, record) {
+  const anomaly = {
+    type,
+    step: record?.step ?? null,
+    active_step: run.active_step ?? null,
+    ts: record?.ts ?? null,
+    hook_event: record?.hook_event ?? null,
+    status: record?.status ?? null,
   };
+
+  run.step_anomaly_count += 1;
+  run.step_anomalies.push(anomaly);
+}
+
+function closeActiveStep(run, endTs, endTsMs, endReason) {
+  const activeStep = run.active_step;
+  if (!activeStep) {
+    return;
+  }
+
+  const windows = ensureArray(run.step_windows[activeStep]);
+  const currentWindow = windows[windows.length - 1] || null;
+
+  if (currentWindow && !currentWindow.end_ts) {
+    currentWindow.end_ts = endTs ?? currentWindow.start_ts ?? null;
+    currentWindow.end_ts_ms =
+      typeof endTsMs === "number" ? endTsMs : currentWindow.start_ts_ms ?? null;
+    currentWindow.end_reason = endReason ?? "step_done";
+
+    if (
+      typeof currentWindow.start_ts_ms === "number" &&
+      typeof currentWindow.end_ts_ms === "number"
+    ) {
+      incrementValueByGroup(
+        run.step_durations,
+        activeStep,
+        Math.max(0, currentWindow.end_ts_ms - currentWindow.start_ts_ms),
+      );
+    }
+  }
+
+  run.active_step = null;
+  run.active_step_started_at = null;
+  run.active_step_started_at_ms = null;
+}
+
+function openStepWindow(run, step, record) {
+  if (!step) {
+    return;
+  }
+
+  if (!Array.isArray(run.step_windows[step])) {
+    run.step_windows[step] = [];
+  }
+
+  run.step_windows[step].push({
+    seq: run.step_windows[step].length + 1,
+    start_ts: record.ts,
+    start_ts_ms: record.ts_ms,
+    end_ts: null,
+    end_ts_ms: null,
+    end_reason: null,
+  });
+
+  run.active_step = step;
+  run.active_step_started_at = record.ts;
+  run.active_step_started_at_ms = record.ts_ms;
+}
+
+function assignToolEventToStep(run, record) {
+  const step = run.active_step || UNSCOPED_STEP;
+  record.step = step;
+  record.step_source = run.active_step ? "active_run" : "unscoped";
+  incrementValueByGroup(run.tool_events_by_step, step, 1);
+  return step;
 }
 
 function shouldRestartRun(run, record) {
@@ -715,16 +960,22 @@ function ensureRun(session, record, runRecords) {
     session.active_runs[record.skill] = run;
   }
 
-  return run;
+  return normalizeRunState(run);
 }
 
 function ingestRecordIntoRun(run, record) {
+  normalizeRunState(run);
   run.events_count += 1;
   run.last_event_at = record.ts;
   run.last_event_at_ms = record.ts_ms;
   run.last_hook_event = record.hook_event;
   run.conversation_id = record.conversation_id ?? run.conversation_id;
   run.cursor_session_id = record.cursor_session_id ?? run.cursor_session_id;
+  run.model = record.model ?? run.model ?? null;
+  if (!Array.isArray(run.models_used)) {
+    run.models_used = [];
+  }
+  addUnique(run.models_used, record.model);
 
   if (record.record_type === "skill_trace") {
     run.has_trace = true;
@@ -734,9 +985,25 @@ function ingestRecordIntoRun(run, record) {
       run.step_statuses[record.step] = record.status ?? run.step_statuses[record.step] ?? null;
       if (record.status === "start") {
         addUnique(run.steps_started, record.step);
+        if (run.active_step) {
+          recordStepAnomaly(
+            run,
+            run.active_step === record.step
+              ? "step_restarted_without_done"
+              : "step_switched_without_done",
+            record,
+          );
+          closeActiveStep(run, record.ts, record.ts_ms, "next_step_started");
+        }
+        openStepWindow(run, record.step, record);
       }
       if (record.status === "done") {
         addUnique(run.completed_steps, record.step);
+        if (run.active_step === record.step) {
+          closeActiveStep(run, record.ts, record.ts_ms, "step_done");
+        } else {
+          recordStepAnomaly(run, "step_done_without_active_match", record);
+        }
       }
     }
     return;
@@ -747,22 +1014,27 @@ function ingestRecordIntoRun(run, record) {
   }
 
   const toolName = record.tool_name || "unknown";
+  const step = assignToolEventToStep(run, record);
 
   if (record.tool_stage === "before") {
     run.pre_tool_count += 1;
     incrementCounter(run.pre_tool_breakdown, toolName);
+    incrementCounterByGroup(run.pre_tool_breakdown_by_step, step, toolName);
     return;
   }
 
   run.tool_count += 1;
   incrementCounter(run.tool_breakdown, toolName);
+  incrementCounterByGroup(run.tool_breakdown_by_step, step, toolName);
 
   if (record.success === true) {
     run.success_tool_count += 1;
+    incrementValueByGroup(run.success_tool_count_by_step, step, 1);
   }
 
   if (record.success === false) {
     run.failed_tool_count += 1;
+    incrementValueByGroup(run.failed_tool_count_by_step, step, 1);
     run.error_count += 1;
     run.last_error = record.error ?? run.last_error;
     incrementCounter(run.failure_breakdown, record.failure_type || "error");
@@ -779,6 +1051,11 @@ function ingestRecordIntoRun(run, record) {
   if (FILE_EDIT_TOOL_NAMES.has(toolName)) {
     run.file_edit_count += 1;
     addUniqueMany(run.modified_files, ensureArray(record.modified_files));
+    addUniqueManyByGroup(
+      run.modified_files_by_step,
+      step,
+      ensureArray(record.modified_files),
+    );
   }
 }
 
@@ -788,6 +1065,8 @@ function finalizeRun(session, skill, endTs, endTsMs, completionReason) {
     return null;
   }
 
+  normalizeRunState(run);
+  closeActiveStep(run, endTs, endTsMs, completionReason || "run_finalized");
   delete session.active_runs[skill];
 
   const summaryTimestamp = createTimestamp();
@@ -820,12 +1099,22 @@ function finalizeRun(session, skill, endTs, endTsMs, completionReason) {
     step_statuses: sortObjectByKey(run.step_statuses),
     steps_started: run.steps_started,
     completed_steps: run.completed_steps,
+    tool_events_by_step: sortObjectByKey(run.tool_events_by_step),
     pre_tool_count: run.pre_tool_count,
     tool_count: run.tool_count,
     success_tool_count: run.success_tool_count,
     failed_tool_count: run.failed_tool_count,
     tool_breakdown: sortObjectByKey(run.tool_breakdown),
     pre_tool_breakdown: sortObjectByKey(run.pre_tool_breakdown),
+    pre_tool_breakdown_by_step: sortNestedObjectByKey(run.pre_tool_breakdown_by_step),
+    tool_breakdown_by_step: sortNestedObjectByKey(run.tool_breakdown_by_step),
+    success_tool_count_by_step: sortObjectByKey(run.success_tool_count_by_step),
+    failed_tool_count_by_step: sortObjectByKey(run.failed_tool_count_by_step),
+    modified_files_by_step: sortNestedObjectByKey(run.modified_files_by_step),
+    step_windows: sortNestedObjectByKey(run.step_windows),
+    step_durations: sortObjectByKey(run.step_durations),
+    step_anomaly_count: run.step_anomaly_count,
+    step_anomalies: run.step_anomalies,
     error_count: run.error_count,
     last_error: run.last_error,
     failure_breakdown: sortObjectByKey(run.failure_breakdown),
@@ -833,6 +1122,8 @@ function finalizeRun(session, skill, endTs, endTsMs, completionReason) {
     shell_count: run.shell_count,
     file_edit_count: run.file_edit_count,
     modified_files: run.modified_files,
+    model: run.model ?? null,
+    models_used: [...(run.models_used || [])].sort(),
     first_hook_event: run.first_hook_event,
     last_hook_event: run.last_hook_event,
   };
@@ -917,11 +1208,10 @@ async function main() {
   const records = buildRecords(eventName, payload);
 
   await withLock(async () => {
-    appendRecords(EVENT_LOG_FILE, records);
-
     const state = loadState();
     const runRecords = updateRunState(state, records);
 
+    appendRecords(EVENT_LOG_FILE, records);
     appendRecords(RUNS_LOG_FILE, runRecords);
     saveJson(STATE_FILE, state);
   });

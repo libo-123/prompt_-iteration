@@ -7,6 +7,8 @@
 1. `Skill` 自己显式输出的阶段轨迹，也就是正文里形如 `[SKILL_TRACE] skill=xxx step=xxx status=start|done` 的标记
 2. Agent 在执行过程中触发的工具调用、失败、停止等 Hook 事件
 
+更适合验证“观察系统是否能记录工具执行”，还不适合验证文件修改链路、失败重试链路、长任务链路。
+
 它最终会把数据写进 3 个文件：
 
 - `logs/skill-trace.jsonl`：最细粒度的原始事件流
@@ -125,6 +127,8 @@
 | `tool_stage` | `before` 或 `after` |
 | `skill` | 推断出的 Skill 名称，推不出来就是 `null` |
 | `skill_source` | Skill 来源，可能是 `tool_input`、`transcript` 或 `null` |
+| `step` | 该工具事件被归属到的步骤；若当前没有活动步骤则为 `_unscoped` |
+| `step_source` | 步骤归属来源，当前可能是 `active_run` 或 `unscoped` |
 | `success` | 调用是否成功；调用前为 `null` |
 | `duration_ms` | 工具耗时；仅调用后或失败后有值 |
 | `error` | 失败时的错误信息 |
@@ -202,12 +206,19 @@
 | `step_statuses` | 每个 step 的最后状态 |
 | `steps_started` | 开始过的 step 列表 |
 | `completed_steps` | 完成过的 step 列表 |
+| `active_step` | 当前仍处于进行中的步骤；没有时为 `null` |
+| `active_step_started_at` / `active_step_started_at_ms` | 当前活动步骤的开始时间 |
+| `tool_events_by_step` | 每个 step 归属到的工具事件数 |
 | `pre_tool_count` | 工具调用前事件数 |
 | `tool_count` | 工具调用完成后的事件数 |
 | `success_tool_count` | 成功工具数 |
 | `failed_tool_count` | 失败工具数 |
 | `tool_breakdown` | 成功/完成后的工具名统计 |
 | `pre_tool_breakdown` | 调用前的工具名统计 |
+| `pre_tool_breakdown_by_step` | 按 step 聚合的调用前工具分布 |
+| `tool_breakdown_by_step` | 按 step 聚合的完成后工具分布 |
+| `success_tool_count_by_step` | 按 step 聚合的成功工具数 |
+| `failed_tool_count_by_step` | 按 step 聚合的失败工具数 |
 | `error_count` | 错误次数 |
 | `last_error` | 最近一次错误信息 |
 | `failure_breakdown` | 失败类型分布 |
@@ -215,6 +226,10 @@
 | `shell_count` | `Shell` 工具调用数 |
 | `file_edit_count` | 文件编辑工具调用数 |
 | `modified_files` | 已识别的被编辑文件列表 |
+| `modified_files_by_step` | 按 step 聚合的改文件列表 |
+| `step_windows` | 每个 step 的开始/结束窗口，用于按时间窗口归属工具调用 |
+| `step_durations` | 每个 step 累积时长 |
+| `step_anomaly_count` / `step_anomalies` | step 事件异常统计，如未 `done` 就切换步骤 |
 
 ### 使用建议
 
@@ -258,6 +273,11 @@
 | `failed_tool_count` | 失败工具数 |
 | `tool_breakdown` | 工具分布统计 |
 | `pre_tool_breakdown` | 调用前工具分布统计 |
+| `tool_events_by_step` | 每个步骤的工具事件总数 |
+| `pre_tool_breakdown_by_step` | 每个步骤的调用前工具分布 |
+| `tool_breakdown_by_step` | 每个步骤的完成后工具分布 |
+| `success_tool_count_by_step` | 每个步骤的成功工具数 |
+| `failed_tool_count_by_step` | 每个步骤的失败工具数 |
 | `error_count` | 错误总数 |
 | `last_error` | 最后一条错误 |
 | `failure_breakdown` | 错误类型统计 |
@@ -265,6 +285,10 @@
 | `shell_count` | Shell 调用次数 |
 | `file_edit_count` | 文件编辑次数 |
 | `modified_files` | run 中修改过的文件 |
+| `modified_files_by_step` | 按步骤聚合的改文件列表 |
+| `step_windows` | 各步骤的时间窗口 |
+| `step_durations` | 各步骤累计时长 |
+| `step_anomaly_count` / `step_anomalies` | step 边界异常信息 |
 | `first_hook_event` / `last_hook_event` | 首尾 Hook 事件 |
 
 ### 使用建议
@@ -495,22 +519,111 @@
 - `verify`
 - `deliver`
 
-## 6.2 推荐写法
+## 6.2 Skill Trace 编写规范
 
-建议在 `SKILL.md` 或实际执行输出中使用统一格式：
+### 目标
+
+为了将工具调用稳定映射到 Skill 的内部步骤，Skill 作者应显式输出步骤边界标记。观察器以这些标记作为步骤窗口的起止依据，并将窗口内的工具调用归属到对应 step。
+
+### 基本原则
+
+1. Skill 应显式声明关键步骤的开始与结束。
+2. 步骤名称应表达“阶段意图”，而非具体工具动作。
+3. 工具调用的步骤归属以显式 Trace 为准，不依赖工具名猜测。
+4. `demo skill` 只是协议示例，不代表所有 Skill 都必须使用同一套步骤名称。
+
+### 标记格式
+
+统一使用以下格式输出步骤事件：
 
 ```text
 [SKILL_TRACE] skill=your-skill-name step=discover status=start
 [SKILL_TRACE] skill=your-skill-name step=discover status=done
 ```
 
-约定建议：
+### 必填字段
 
-- `skill`：固定写 Skill 名
-- `step`：使用稳定、可枚举的阶段名
-- `status`：优先用 `start` / `done`
+- `skill`：Skill 的稳定标识
+- `step`：当前阶段名称
+- `status`：阶段状态，当前规范只使用 `start` 与 `done`
 
-这样后续做统计最稳定。
+### 步骤命名规范
+
+推荐：
+
+- 使用小写英文
+- 多词用 `_` 连接
+- 名称稳定，避免频繁改动
+- 优先表达阶段意图
+
+推荐示例：
+
+- `discover`
+- `analyze`
+- `plan`
+- `execute`
+- `verify`
+- `deliver`
+- `load_context`
+- `inspect_code`
+- `draft_changes`
+
+不推荐示例：
+
+- `read1`
+- `tool_step`
+- `do_something`
+- `grep_file`
+- `shell_run`
+
+### 编写要求
+
+1. 每个关键步骤开始时必须输出 `status=start`
+2. 每个关键步骤结束时应输出 `status=done`
+3. 同一时刻只应存在一个活动步骤
+4. 新步骤开始前，应先结束上一个步骤；若未结束，观察器会将其视为隐式收口
+5. Skill 至少应覆盖真正有分析价值的阶段，不必为每个微小动作单独建 step
+
+### 推荐粒度
+
+建议一个 Skill 保持 4 到 8 个步骤。步骤过少会失去观测价值，步骤过多会让日志噪声过大。
+
+### 推荐通用步骤
+
+通用型 Skill 可优先采用以下阶段：
+
+- `discover`
+- `analyze`
+- `plan`
+- `execute`
+- `verify`
+- `deliver`
+
+但垂直型 Skill 可以按业务语义自定义，例如：
+
+- `fetch_doc`
+- `inspect_schema`
+- `prepare_patch`
+- `run_checks`
+- `publish_result`
+
+### 容错约定
+
+若 Skill 未严格输出成对的 `start/done`，观察器会按以下方式容错：
+
+1. 新步骤 `start` 到来时，自动结束上一个活动步骤
+2. Run 结束时，自动结束仍未关闭的活动步骤
+3. 异常顺序会被记录为 anomaly，但不会中断整个 run 聚合
+
+### 与 demo skill 的关系
+
+`skill-trace-demo` 应被视为协议示例，而不是固定流程模板。
+
+- 可以参考它的 `skill / step / status` DSL 格式
+- 可以参考它的 `start -> done` 成对写法
+- 不必强制所有 Skill 都采用 `discover/analyze/plan/execute/verify/deliver`
+
+一句话说：demo 提供的是协议，不是流程模板。
 
 ## 6.3 运行后怎么看
 
@@ -574,9 +687,9 @@
 
 ## 7. 一些注意点
 
-### 1. 只有显式 `[SKILL_TRACE]` 才会有步骤级语义
+### 1. 只有显式 `[SKILL_TRACE]` 才会有稳定的步骤归属
 
-如果只是调用了工具，没有写 trace，那么仍然能知道 run 存在，但不知道它处于 `discover` 还是 `verify`。
+如果只是调用了工具，没有写 trace，那么仍然能知道 run 存在，但工具事件会被归到 `_unscoped`，无法稳定判断它处于 `discover` 还是 `verify`。
 
 ### 2. Skill 识别有推断成分
 
@@ -618,3 +731,39 @@
 - `runs.jsonl` 保存完成后的汇总
 
 而 `hooks/skill_trace_logger.js` 就是中间那层事件标准化、状态聚合和 run 收口逻辑；`hooks.json` 则是把它真正挂到 Cursor 生命周期上的入口。
+
+
+
+## 9. 注入skill执行器
+## discover
+[SKILL_TRACE] skill=skill-trace-demo step=discover status=start
+读取用户请求：请帮我把首页欢迎语改成“欢迎使用 Trace Demo”。
+[SKILL_TRACE] skill=skill-trace-demo step=discover status=done
+
+## analyze
+[SKILL_TRACE] skill=skill-trace-demo step=analyze status=start
+识别到这是一个 mock 示例任务，目标是演示 trace 链路，不要求真实改动线上系统。
+[SKILL_TRACE] skill=skill-trace-demo step=analyze status=done
+
+## plan
+[SKILL_TRACE] skill=skill-trace-demo step=plan status=start
+计划：先说明会修改文案，再模拟编辑首页文件，最后检查结果是否符合预期。
+[SKILL_TRACE] skill=skill-trace-demo step=plan status=done
+
+## execute
+[SKILL_TRACE] skill=skill-trace-demo step=execute status=start
+执行 mock 操作：将 `src/pages/home.tsx` 中的欢迎语替换为“欢迎使用 Trace Demo”。
+[SKILL_TRACE] skill=skill-trace-demo step=execute status=done
+
+## verify
+[SKILL_TRACE] skill=skill-trace-demo step=verify status=start
+验证 mock 结果：确认仅改动欢迎语文案，未影响按钮、标题层级与页面结构。
+[SKILL_TRACE] skill=skill-trace-demo step=verify status=done
+
+## deliver
+[SKILL_TRACE] skill=skill-trace-demo step=deliver status=start
+向用户交付：欢迎语示例已更新，本次输出可用于验证 skill trace 与 hook 日志采集。
+[SKILL_TRACE] skill=skill-trace-demo step=deliver status=done
+
+
+参考 skill-trace-demo skill用法即可！
