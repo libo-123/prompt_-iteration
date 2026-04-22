@@ -1,0 +1,7 @@
+interface:
+  display_name: "语雀"
+  short_description: "语雀 OpenAPI 工作空间工作流"
+  default_prompt: "使用 $yuque 读取、搜索、创建、更新与重组语雀知识库、文档与目录结构，并对破坏性操作进行防护。"
+
+policy:
+  allow_implicit_invocation: true

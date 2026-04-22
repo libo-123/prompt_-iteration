@@ -1,0 +1,189 @@
+{
+  "input_records": 169,
+  "record_type_counts": {
+    "lifecycle_event": 15,
+    "tool_event": 142,
+    "skill_trace": 12
+  },
+  "tool_counts": {
+    "Read": 8,
+    "Grep": 5,
+    "Write": 22,
+    "WebSearch": 23,
+    "Shell": 4,
+    "WebFetch": 9
+  },
+  "tool_success_failure": {
+    "Read": {
+      "success": 8,
+      "failed": 0
+    },
+    "Grep": {
+      "success": 5,
+      "failed": 0
+    },
+    "Write": {
+      "success": 22,
+      "failed": 0
+    },
+    "WebSearch": {
+      "success": 23,
+      "failed": 0
+    },
+    "Shell": {
+      "success": 4,
+      "failed": 0
+    },
+    "WebFetch": {
+      "success": 6,
+      "failed": 3
+    }
+  },
+  "avg_duration_by_tool_ms": {
+    "Read": 1051.411,
+    "Grep": 92.282,
+    "Write": 148.314,
+    "WebSearch": 6013.87,
+    "Shell": 1853.872,
+    "WebFetch": 4107.778
+  },
+  "failures": [
+    {
+      "ts": "2026-04-21 14:57:11:056",
+      "tool_name": "WebFetch",
+      "failure_type": "timeout",
+      "error": "Fetch timed out while retrieving content"
+    },
+    {
+      "ts": "2026-04-21 14:57:17:944",
+      "tool_name": "WebFetch",
+      "failure_type": "error",
+      "error": "Error fetching URL, status code: 404 Not Found"
+    },
+    {
+      "ts": "2026-04-21 14:57:18:833",
+      "tool_name": "WebFetch",
+      "failure_type": "error",
+      "error": "Error fetching URL, status code: 404 Not Found"
+    }
+  ],
+  "model_counts": {
+    "gpt-5.4": 105,
+    "gpt-5.4-medium": 64
+  },
+  "session_count": 9,
+  "session_ids": [
+    "0d549de3-8303-435b-b45b-34c3c221fc51",
+    "22498f42-a76f-4a74-8fc2-076e93179f96",
+    "2e3ad725-ce5d-4f04-9d08-99754ac3898f",
+    "2ed8d9a5-1cd4-4632-8829-769c3a216c67",
+    "80b79953-066d-4f72-ba5f-b2c40f652cc7",
+    "98da4404-1350-4547-9208-1ced6b553eb6",
+    "a5ee4972-684f-4e0f-a20c-c394182b661a",
+    "a8b580ee-a44c-42ea-95c5-fa7901fdfe89",
+    "e75fbd52-d930-47f0-b698-d539dfc45c87"
+  ],
+  "time_range": {
+    "start": "2026-04-21T06:19:10.280000",
+    "end": "2026-04-21T15:32:09.051000",
+    "hours": 9.22
+  },
+  "actual_tool_calls": 71,
+  "timeline": [
+    {
+      "label": "06:00",
+      "counts": {
+        "lifecycle_event": 3,
+        "tool_event": 19,
+        "skill_trace": 12
+      }
+    },
+    {
+      "label": "14:00",
+      "counts": {
+        "tool_event": 123,
+        "lifecycle_event": 11
+      }
+    },
+    {
+      "label": "15:00",
+      "counts": {
+        "lifecycle_event": 1
+      }
+    }
+  ],
+  "skill_trace_events": [
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "discover",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "discover",
+      "status": "done"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "analyze",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "analyze",
+      "status": "done"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "plan",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "plan",
+      "status": "done"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "execute",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "execute",
+      "status": "done"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "verify",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "verify",
+      "status": "done"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "deliver",
+      "status": "start"
+    },
+    {
+      "ts": "2026-04-21 06:20:49:321",
+      "skill": "skill-trace-demo",
+      "step": "deliver",
+      "status": "done"
+    }
+  ]
+}

@@ -2,6 +2,9 @@
   "plugins": {
     "docs-canvas": {
       "enabled": true
+    },
+    "langfuse": {
+      "enabled": true
     }
   }
 }

@@ -22,6 +22,116 @@
       "updated_at_ms": 1776752669002,
       "next_run_seq": 1,
       "active_runs": {}
+    },
+    "a5ee4972-684f-4e0f-a20c-c394182b661a": {
+      "session_id": "a5ee4972-684f-4e0f-a20c-c394182b661a",
+      "conversation_id": "a5ee4972-684f-4e0f-a20c-c394182b661a",
+      "cursor_session_id": "a5ee4972-684f-4e0f-a20c-c394182b661a",
+      "started_at": "2026-04-21 14:27:18:158",
+      "started_at_ms": 1776752838158,
+      "updated_at": "2026-04-21 14:30:31:846",
+      "updated_at_ms": 1776753031846,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "22498f42-a76f-4a74-8fc2-076e93179f96": {
+      "session_id": "22498f42-a76f-4a74-8fc2-076e93179f96",
+      "conversation_id": "22498f42-a76f-4a74-8fc2-076e93179f96",
+      "cursor_session_id": "22498f42-a76f-4a74-8fc2-076e93179f96",
+      "started_at": "2026-04-21 14:34:27:298",
+      "started_at_ms": 1776753267298,
+      "updated_at": "2026-04-21 14:34:27:298",
+      "updated_at_ms": 1776753267298,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "2e3ad725-ce5d-4f04-9d08-99754ac3898f": {
+      "session_id": "2e3ad725-ce5d-4f04-9d08-99754ac3898f",
+      "conversation_id": "2e3ad725-ce5d-4f04-9d08-99754ac3898f",
+      "cursor_session_id": "2e3ad725-ce5d-4f04-9d08-99754ac3898f",
+      "started_at": "2026-04-21 14:35:27:782",
+      "started_at_ms": 1776753327782,
+      "updated_at": "2026-04-21 14:35:34:897",
+      "updated_at_ms": 1776753334897,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "2ed8d9a5-1cd4-4632-8829-769c3a216c67": {
+      "session_id": "2ed8d9a5-1cd4-4632-8829-769c3a216c67",
+      "conversation_id": "2ed8d9a5-1cd4-4632-8829-769c3a216c67",
+      "cursor_session_id": "2ed8d9a5-1cd4-4632-8829-769c3a216c67",
+      "started_at": "2026-04-21 14:36:43:399",
+      "started_at_ms": 1776753403399,
+      "updated_at": "2026-04-21 14:36:51:635",
+      "updated_at_ms": 1776753411635,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "a8b580ee-a44c-42ea-95c5-fa7901fdfe89": {
+      "session_id": "a8b580ee-a44c-42ea-95c5-fa7901fdfe89",
+      "conversation_id": "a8b580ee-a44c-42ea-95c5-fa7901fdfe89",
+      "cursor_session_id": "a8b580ee-a44c-42ea-95c5-fa7901fdfe89",
+      "started_at": "2026-04-21 14:39:41:154",
+      "started_at_ms": 1776753581154,
+      "updated_at": "2026-04-21 14:40:57:506",
+      "updated_at_ms": 1776753657506,
+      "next_run_seq": 2,
+      "active_runs": {}
+    },
+    "80b79953-066d-4f72-ba5f-b2c40f652cc7": {
+      "session_id": "80b79953-066d-4f72-ba5f-b2c40f652cc7",
+      "conversation_id": "80b79953-066d-4f72-ba5f-b2c40f652cc7",
+      "cursor_session_id": "80b79953-066d-4f72-ba5f-b2c40f652cc7",
+      "started_at": "2026-04-21 14:48:23:726",
+      "started_at_ms": 1776754103726,
+      "updated_at": "2026-04-21 14:58:08:635",
+      "updated_at_ms": 1776754688635,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "e75fbd52-d930-47f0-b698-d539dfc45c87": {
+      "session_id": "e75fbd52-d930-47f0-b698-d539dfc45c87",
+      "conversation_id": "e75fbd52-d930-47f0-b698-d539dfc45c87",
+      "cursor_session_id": "e75fbd52-d930-47f0-b698-d539dfc45c87",
+      "started_at": "2026-04-21 15:32:09:051",
+      "started_at_ms": 1776756729051,
+      "updated_at": "2026-04-21 15:32:09:051",
+      "updated_at_ms": 1776756729051,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "1ea5c6f3-c6ea-43e8-b7d8-03d790acf5af": {
+      "session_id": "1ea5c6f3-c6ea-43e8-b7d8-03d790acf5af",
+      "conversation_id": "1ea5c6f3-c6ea-43e8-b7d8-03d790acf5af",
+      "cursor_session_id": "1ea5c6f3-c6ea-43e8-b7d8-03d790acf5af",
+      "started_at": "2026-04-21 15:36:01:162",
+      "started_at_ms": 1776756961162,
+      "updated_at": "2026-04-21 15:40:17:410",
+      "updated_at_ms": 1776757217410,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "20270c62-e1fd-4520-9374-fa21d6693304": {
+      "session_id": "20270c62-e1fd-4520-9374-fa21d6693304",
+      "conversation_id": "20270c62-e1fd-4520-9374-fa21d6693304",
+      "cursor_session_id": "20270c62-e1fd-4520-9374-fa21d6693304",
+      "started_at": "2026-04-21 15:50:01:369",
+      "started_at_ms": 1776757801369,
+      "updated_at": "2026-04-21 15:52:15:599",
+      "updated_at_ms": 1776757935599,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "9ac8ac76-3886-4c48-9973-184aa2c2ed51": {
+      "session_id": "9ac8ac76-3886-4c48-9973-184aa2c2ed51",
+      "conversation_id": "9ac8ac76-3886-4c48-9973-184aa2c2ed51",
+      "cursor_session_id": "9ac8ac76-3886-4c48-9973-184aa2c2ed51",
+      "started_at": "2026-04-21 15:58:30:958",
+      "started_at_ms": 1776758310958,
+      "updated_at": "2026-04-21 16:01:21:893",
+      "updated_at_ms": 1776758481893,
+      "next_run_seq": 1,
+      "active_runs": {}
     }
   }
 }
