@@ -12,6 +12,12 @@
 | --- | --- | --- |
 | 总览 | Agent Skill，子目录内 `SKILL.md` 为入口 | `skills/` |
 | 模板 | Skill 模板 | `skills/Atemplate/` |
+| 人物蒸馏 | 同事蒸馏成 Work + Persona Skill | `skills/colleague-skill/` |
+| 关系蒸馏 | 暗恋对象蒸馏成 Relationship Memory + Persona | `skills/crush-skills/` |
+| 关系蒸馏 | 前任蒸馏成 Relationship Memory + Persona | `skills/ex-skill/` |
+| 人物视角 | 峰哥视角的内容创作/社会观察顾问 | `skills/fengge-skill/` |
+| 人物视角 | 户晨风式消费/城市/发展判断 | `skills/hu-chenfeng-skill/` |
+| 关系分析 | 相亲配对兼容性分析与报告 | `skills/love-skill/` |
 | 业务开发 | 枚举/下拉接口缓存（`useRequest` + `cacheKey` 等） | `skills/enum-options-cache/` |
 | 业务开发 | 前端架构设计与任务拆分 | `skills/fe-architect/` |
 | 业务开发 | Stitch 设计转 Vite + React 组件 | `skills/react-components/` |
@@ -19,6 +25,7 @@
 | 业务开发 | React / Next.js 性能与写法 | `skills/vercel-react-best-practices/` |
 | 业务开发 | 语雀 OpenAPI 读写与目录 | `skills/yuque/` |
 | 业务开发 | 页面状态抽成 Zustand 模块化 store | `skills/zustand-generator/` |
+| 人物视角 | 张雪峰式教育/职业规划分析 | `skills/zhangxuefeng-skill/` |
 
 ## Commands
 
@@ -41,13 +48,16 @@
 
 | 类型 | 说明 | 目录 |
 | --- | --- | --- |
-| 规则 | 项目级规则 | `rules/` |
 | Agent | 子 Agent 定义 | `agents/` |
 | Agent | 改完业务组件后做规范检查 | `agents/after-component.md` |
 | Hook 配置 | Cursor Hook 配置入口 | `hooks.json` |
 | Hook | Git Hooks 脚本 | `hooks/` |
 | Hook | 格式化脚本 | `hooks/format.sh` |
 | Hook | Skill Trace 日志采集脚本（Node） | `hooks/skill_trace_logger.js` |
+| 日志 | Cursor 运行与 Skill Trace 日志目录 | `logs/` |
+| 日志 | Agent 运行记录 | `logs/runs.jsonl` |
+| 日志 | Skill Trace 当前状态 | `logs/skill-trace-state.json` |
+| 日志 | Skill Trace 事件流 | `logs/skill-trace.jsonl` |
 | 配置 | Cursor 工作区设置 | `settings.json` |
 | 文档 | Skill Trace 观察器说明 | `skill-trace-observer.md` |
 

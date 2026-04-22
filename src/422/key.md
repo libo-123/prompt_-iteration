@@ -16,3 +16,9 @@ const langfuse = new LangfuseClient({
   publicKey: "pk-lf-9a297b3c-f523-4bb3-b962-5d110594d81e",
   baseUrl: "https://langfuse.corp.kuaishou.com"
 });
+
+
+open ~/.zshrc   配置
+export LANGFUSE_PUBLIC_KEY="pk-lf-9a297b3c-f523-4bb3-b962-5d110594d81e"
+export LANGFUSE_SECRET_KEY="sk-lf-7c216c2b-d1dd-4a53-87c0-bca016804f26"
+export LANGFUSE_HOST="https://langfuse.corp.kuaishou.com"
