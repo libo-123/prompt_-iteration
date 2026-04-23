@@ -5,9 +5,9 @@ const path = require("path");
 const TRACE_LINE_RE = /^\[SKILL_TRACE\]\s+(.*)$/gm;
 const TRACE_KV_RE = /([a-zA-Z0-9_-]+)=(".*?"|\S+)/g;
 const SKILL_PATH_RE =
-  /(?:^|\/)\.(?:cursor\/skills(?:-cursor)?|claude\/skills)\/([^/]+)\/SKILL\.md$/;
+  /(?:^|\/)\.codeflicker\/skills\/([^/]+)\/SKILL\.md$/;
 const PROJECT_ROOT = path.resolve(__dirname, "..", "..");
-const LOG_DIR = path.join(PROJECT_ROOT, ".cursor", "logs");
+const LOG_DIR = path.join(PROJECT_ROOT, ".codeflicker", "logs");
 const EVENT_LOG_FILE =
   process.env.SKILL_TRACE_LOG_FILE || path.join(LOG_DIR, "skill-trace.jsonl");
 const RUNS_LOG_FILE =

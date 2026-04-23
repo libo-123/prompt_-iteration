@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codeflicker/hooks/skill_trace_logger.js preToolUse",
+            "timeout": 60000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codeflicker/hooks/skill_trace_logger.js postToolUse",
+            "timeout": 60000
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codeflicker/hooks/skill_trace_logger.js postToolUseFailure",
+            "timeout": 60000
+          }
+        ]
+      }
+    ],
+    "AfterAgentResponse":[
+     {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codeflicker/hooks/skill_trace_logger.js afterAgentResponse",
+            "timeout": 60000
+          }
+        ]
+      }
+    ]
+  }
+}
