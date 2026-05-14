@@ -14,6 +14,7 @@
 | 模板 | Skill 模板 | `skills/Atemplate/` |
 | 人物蒸馏 | 同事蒸馏成 Work + Persona Skill | `skills/colleague-skill/` |
 | 关系蒸馏 | 暗恋对象蒸馏成 Relationship Memory + Persona | `skills/crush-skills/` |
+| 模板示范 | Cursor Agent Skill 写法示范 | `skills/create-skill-showcase/` |
 | 关系蒸馏 | 前任蒸馏成 Relationship Memory + Persona | `skills/ex-skill/` |
 | 人物视角 | 峰哥视角的内容创作/社会观察顾问 | `skills/fengge-skill/` |
 | 人物视角 | 户晨风式消费/城市/发展判断 | `skills/hu-chenfeng-skill/` |
@@ -32,6 +33,7 @@
 | 类型 | 说明 | 目录 |
 | --- | --- | --- |
 | 总览 | 斜杠命令（`/文件名` 触发对应 `.md`） | `commands/` |
+| 通用 | 总结近两周社会新闻并记录语雀小记 | `commands/ai-news.md` |
 | 通用 | 总结近两周 AI 热点 | `commands/ai-trends.md` |
 | 组件 | Drawer 用法 | `commands/components/drawer.md` |
 | 配置 | 生成 `AskQuestion` 配置 | `commands/config/askquestion.md` |

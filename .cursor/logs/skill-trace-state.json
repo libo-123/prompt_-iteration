@@ -253,6 +253,193 @@
       "updated_at_ms": 1776912807034,
       "next_run_seq": 1,
       "active_runs": {}
+    },
+    "4017e2f5-f232-4403-bc0b-2650c039a964": {
+      "session_id": "4017e2f5-f232-4403-bc0b-2650c039a964",
+      "conversation_id": "4017e2f5-f232-4403-bc0b-2650c039a964",
+      "cursor_session_id": "4017e2f5-f232-4403-bc0b-2650c039a964",
+      "started_at": "2026-04-23 16:29:18:155",
+      "started_at_ms": 1776932958155,
+      "updated_at": "2026-04-23 16:40:21:676",
+      "updated_at_ms": 1776933621676,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "359e4900-34d5-42e3-88bd-1c94da26cb2e": {
+      "session_id": "359e4900-34d5-42e3-88bd-1c94da26cb2e",
+      "conversation_id": "359e4900-34d5-42e3-88bd-1c94da26cb2e",
+      "cursor_session_id": "359e4900-34d5-42e3-88bd-1c94da26cb2e",
+      "started_at": "2026-04-23 16:39:02:405",
+      "started_at_ms": 1776933542405,
+      "updated_at": "2026-04-23 16:39:12:989",
+      "updated_at_ms": 1776933552989,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "9dc97af7-fa6c-4189-963b-bc3937d8427c": {
+      "session_id": "9dc97af7-fa6c-4189-963b-bc3937d8427c",
+      "conversation_id": "9dc97af7-fa6c-4189-963b-bc3937d8427c",
+      "cursor_session_id": "9dc97af7-fa6c-4189-963b-bc3937d8427c",
+      "started_at": "2026-04-23 18:28:28:645",
+      "started_at_ms": 1776940108645,
+      "updated_at": "2026-04-23 20:21:48:206",
+      "updated_at_ms": 1776946908206,
+      "next_run_seq": 3,
+      "active_runs": {}
+    },
+    "1fc84836-46c4-49a0-bf89-70bbcdc5a123": {
+      "session_id": "1fc84836-46c4-49a0-bf89-70bbcdc5a123",
+      "conversation_id": "1fc84836-46c4-49a0-bf89-70bbcdc5a123",
+      "cursor_session_id": "1fc84836-46c4-49a0-bf89-70bbcdc5a123",
+      "started_at": "2026-04-27 11:42:55:744",
+      "started_at_ms": 1777261375744,
+      "updated_at": "2026-04-27 11:43:36:706",
+      "updated_at_ms": 1777261416706,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "20d27b9b-9f1a-40f6-a441-97c85cf3e6d2": {
+      "session_id": "20d27b9b-9f1a-40f6-a441-97c85cf3e6d2",
+      "conversation_id": "20d27b9b-9f1a-40f6-a441-97c85cf3e6d2",
+      "cursor_session_id": "20d27b9b-9f1a-40f6-a441-97c85cf3e6d2",
+      "started_at": "2026-05-07 10:44:47:214",
+      "started_at_ms": 1778121887214,
+      "updated_at": "2026-05-07 10:47:19:468",
+      "updated_at_ms": 1778122039468,
+      "next_run_seq": 2,
+      "active_runs": {}
+    },
+    "591619cc-da1a-4271-9c50-61375d93d714": {
+      "session_id": "591619cc-da1a-4271-9c50-61375d93d714",
+      "conversation_id": "591619cc-da1a-4271-9c50-61375d93d714",
+      "cursor_session_id": "591619cc-da1a-4271-9c50-61375d93d714",
+      "started_at": "2026-05-08 11:02:36:438",
+      "started_at_ms": 1778209356438,
+      "updated_at": "2026-05-08 11:04:56:508",
+      "updated_at_ms": 1778209496508,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "2f706155-b25c-45dd-a9d5-6bc324394bc6": {
+      "session_id": "2f706155-b25c-45dd-a9d5-6bc324394bc6",
+      "conversation_id": "2f706155-b25c-45dd-a9d5-6bc324394bc6",
+      "cursor_session_id": "2f706155-b25c-45dd-a9d5-6bc324394bc6",
+      "started_at": "2026-05-08 15:33:35:493",
+      "started_at_ms": 1778225615493,
+      "updated_at": "2026-05-08 15:58:20:186",
+      "updated_at_ms": 1778227100186,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "e8b68ba7-2660-4cfb-9482-75bcc582b924": {
+      "session_id": "e8b68ba7-2660-4cfb-9482-75bcc582b924",
+      "conversation_id": "e8b68ba7-2660-4cfb-9482-75bcc582b924",
+      "cursor_session_id": "e8b68ba7-2660-4cfb-9482-75bcc582b924",
+      "started_at": "2026-05-09 17:15:26:694",
+      "started_at_ms": 1778318126694,
+      "updated_at": "2026-05-09 17:16:04:120",
+      "updated_at_ms": 1778318164120,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "7df0203d-766f-4bce-9f33-5862b34fca39": {
+      "session_id": "7df0203d-766f-4bce-9f33-5862b34fca39",
+      "conversation_id": "7df0203d-766f-4bce-9f33-5862b34fca39",
+      "cursor_session_id": "7df0203d-766f-4bce-9f33-5862b34fca39",
+      "started_at": "2026-05-11 14:12:09:176",
+      "started_at_ms": 1778479929176,
+      "updated_at": "2026-05-11 14:18:08:068",
+      "updated_at_ms": 1778480288068,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "649da1f4-4a38-4dfb-8fc4-4c1bc873fcf1": {
+      "session_id": "649da1f4-4a38-4dfb-8fc4-4c1bc873fcf1",
+      "conversation_id": "649da1f4-4a38-4dfb-8fc4-4c1bc873fcf1",
+      "cursor_session_id": "649da1f4-4a38-4dfb-8fc4-4c1bc873fcf1",
+      "started_at": "2026-05-11 16:06:04:289",
+      "started_at_ms": 1778486764289,
+      "updated_at": "2026-05-11 16:08:19:878",
+      "updated_at_ms": 1778486899878,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "19b29d07-3a3a-4db4-93ec-e25f6dc06712": {
+      "session_id": "19b29d07-3a3a-4db4-93ec-e25f6dc06712",
+      "conversation_id": "19b29d07-3a3a-4db4-93ec-e25f6dc06712",
+      "cursor_session_id": "19b29d07-3a3a-4db4-93ec-e25f6dc06712",
+      "started_at": "2026-05-11 16:52:29:472",
+      "started_at_ms": 1778489549472,
+      "updated_at": "2026-05-11 16:53:43:293",
+      "updated_at_ms": 1778489623293,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "5e2be602-6693-4e80-a81c-e563e1671c97": {
+      "session_id": "5e2be602-6693-4e80-a81c-e563e1671c97",
+      "conversation_id": "5e2be602-6693-4e80-a81c-e563e1671c97",
+      "cursor_session_id": "5e2be602-6693-4e80-a81c-e563e1671c97",
+      "started_at": "2026-05-11 17:21:49:767",
+      "started_at_ms": 1778491309767,
+      "updated_at": "2026-05-11 17:27:54:775",
+      "updated_at_ms": 1778491674775,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "ff516c4d-9814-4fb2-afa5-ab2e4962ec85": {
+      "session_id": "ff516c4d-9814-4fb2-afa5-ab2e4962ec85",
+      "conversation_id": "ff516c4d-9814-4fb2-afa5-ab2e4962ec85",
+      "cursor_session_id": "ff516c4d-9814-4fb2-afa5-ab2e4962ec85",
+      "started_at": "2026-05-12 16:40:53:221",
+      "started_at_ms": 1778575253221,
+      "updated_at": "2026-05-12 16:41:35:827",
+      "updated_at_ms": 1778575295827,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "4d0ef905-cd39-4b5a-8eff-3a3aa54bced4": {
+      "session_id": "4d0ef905-cd39-4b5a-8eff-3a3aa54bced4",
+      "conversation_id": "4d0ef905-cd39-4b5a-8eff-3a3aa54bced4",
+      "cursor_session_id": "4d0ef905-cd39-4b5a-8eff-3a3aa54bced4",
+      "started_at": "2026-05-12 17:18:19:468",
+      "started_at_ms": 1778577499468,
+      "updated_at": "2026-05-12 17:42:16:924",
+      "updated_at_ms": 1778578936924,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "74125e0c-d12b-48d6-9d01-c7d540422831": {
+      "session_id": "74125e0c-d12b-48d6-9d01-c7d540422831",
+      "conversation_id": "74125e0c-d12b-48d6-9d01-c7d540422831",
+      "cursor_session_id": "74125e0c-d12b-48d6-9d01-c7d540422831",
+      "started_at": "2026-05-12 19:18:04:538",
+      "started_at_ms": 1778584684538,
+      "updated_at": "2026-05-12 19:20:57:485",
+      "updated_at_ms": 1778584857485,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "079208ba-693d-4228-8618-a94bb6ed6814": {
+      "session_id": "079208ba-693d-4228-8618-a94bb6ed6814",
+      "conversation_id": "079208ba-693d-4228-8618-a94bb6ed6814",
+      "cursor_session_id": "079208ba-693d-4228-8618-a94bb6ed6814",
+      "started_at": "2026-05-12 19:21:38:320",
+      "started_at_ms": 1778584898320,
+      "updated_at": "2026-05-12 19:23:48:088",
+      "updated_at_ms": 1778585028088,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "9149b94e-2c27-4b01-b59f-fcdee637a7d4": {
+      "session_id": "9149b94e-2c27-4b01-b59f-fcdee637a7d4",
+      "conversation_id": "9149b94e-2c27-4b01-b59f-fcdee637a7d4",
+      "cursor_session_id": "9149b94e-2c27-4b01-b59f-fcdee637a7d4",
+      "started_at": "2026-05-14 11:42:37:526",
+      "started_at_ms": 1778730157526,
+      "updated_at": "2026-05-14 11:47:13:931",
+      "updated_at_ms": 1778730433931,
+      "next_run_seq": 2,
+      "active_runs": {}
     }
   }
 }
