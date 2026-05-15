@@ -440,6 +440,39 @@
       "updated_at_ms": 1778730433931,
       "next_run_seq": 2,
       "active_runs": {}
+    },
+    "61680402-de2a-4e69-b951-8da991ff3aaa": {
+      "session_id": "61680402-de2a-4e69-b951-8da991ff3aaa",
+      "conversation_id": "61680402-de2a-4e69-b951-8da991ff3aaa",
+      "cursor_session_id": "61680402-de2a-4e69-b951-8da991ff3aaa",
+      "started_at": "2026-05-15 14:26:13:474",
+      "started_at_ms": 1778826373474,
+      "updated_at": "2026-05-15 14:27:03:863",
+      "updated_at_ms": 1778826423863,
+      "next_run_seq": 1,
+      "active_runs": {}
+    },
+    "0343b9d8-e2c3-4452-afea-dde7460bb8c8": {
+      "session_id": "0343b9d8-e2c3-4452-afea-dde7460bb8c8",
+      "conversation_id": "0343b9d8-e2c3-4452-afea-dde7460bb8c8",
+      "cursor_session_id": "0343b9d8-e2c3-4452-afea-dde7460bb8c8",
+      "started_at": "2026-05-15 14:31:16:104",
+      "started_at_ms": 1778826676104,
+      "updated_at": "2026-05-15 14:34:06:865",
+      "updated_at_ms": 1778826846865,
+      "next_run_seq": 2,
+      "active_runs": {}
+    },
+    "564429d0-d615-4703-baa4-99e6e5b59d4c": {
+      "session_id": "564429d0-d615-4703-baa4-99e6e5b59d4c",
+      "conversation_id": "564429d0-d615-4703-baa4-99e6e5b59d4c",
+      "cursor_session_id": "564429d0-d615-4703-baa4-99e6e5b59d4c",
+      "started_at": "2026-05-15 14:34:42:258",
+      "started_at_ms": 1778826882258,
+      "updated_at": "2026-05-15 16:00:40:628",
+      "updated_at_ms": 1778832040628,
+      "next_run_seq": 1,
+      "active_runs": {}
     }
   }
 }
